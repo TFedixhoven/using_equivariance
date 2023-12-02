@@ -36,8 +36,17 @@ python -m experiments.classification.train --dataset "cifar10"  # CIFAR-10
 python -m experiments.classification.train --dataset "cifar100"  # CIFAR-100
 python -m experiments.classification.train --dataset "flowers102"  # Flowers-102
 ```
-
 This will train a ResNet model on the specified dataset and evaluate it on both the upright and rotated test set. The results will be logged to Weights & Biases.
+
+#### PatchCamelyon
+After downloading the PCAM dataset, it can be converted to PyTorch data using the following command:
+```bash
+python -m experiments.classification.pcam.preprocess_data
+```
+To then train a model, one can use:
+```bash
+python -m experiments.classification.pcam.main
+```
 
 ### ImageNet
 We use TFRecords to load the ImageNet dataset - see [more details here](https://www.kaggle.com/code/ipythonx/tfrecord-imagenet-basic-starter-on-tpu-vm). To reproduce the ImageNet experiments, use the following command:
@@ -45,6 +54,19 @@ We use TFRecords to load the ImageNet dataset - see [more details here](https://
 ```bash
 python -m experiments.imagenet.main "/path/to/tfrecords"
 ```
+
+### Learning Unequivariance
+To train a single P4 convolution to become unequivariant to rotations, one can use `/experiments/learning_unequivariance/learned_unequi_horses.ipynb`
+
+
+### Rotated MNIST Experiments
+```bash
+python -m experiments.rotmnist.trainer
+```
+This will train a single model on the MNIST dataset. To run the training, one has to download the MNIST dataset and extract it into folders first.
+This will be rewritten to use the torchvision dataset version of MNIST.
+
+Outputs of our training can be found under `/experiments/rotmnist/training_output`, and they can be visualised using `/experiments/rotmnist/total_comparison_visualisation.ipynb`.
 
 ## Citation
 
@@ -60,4 +82,3 @@ If you find this repository useful for your work, please cite as follows:
     pages     = {119-128}
 }
 ```
-
