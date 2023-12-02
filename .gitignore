@@ -1,0 +1,5 @@
+_MACOSX/
+*/__pycache__/
+*.DS_STORE
+*.png
+*.jpg
